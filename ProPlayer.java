@@ -63,4 +63,21 @@ public class ProPlayer {
         System.out.println("Style: " + getPlayStyleTag());
         System.out.println("Overall Rating: " + calculateOverallRating());
     }
+
+    // Method to compare two players based on their overall rating
+    public void compareTo(ProPlayer other) {
+        int myRating = this.calculateOverallRating();
+        int otherRating = other.calculateOverallRating();
+
+        System.out.println("--- Comparison Report ---");
+        System.out.println(this.name + " (" + myRating + ") vs " + other.getName() + " (" + otherRating + ")");
+
+        if (myRating > otherRating) {
+            System.out.println("Recommendation: Start " + this.name);
+        } else if (myRating < otherRating) {
+            System.out.println("Recommendation: Start " + other.getName());
+        } else {
+            System.out.println("Recommendation: Both players are equally matched.");
+        }
+    }
 }
