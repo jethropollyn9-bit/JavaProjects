@@ -1,17 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Team {
-    public static void main(String[] args) {
-        // 1. Create an Array to hold 3 ProPlayer objects
-        ProPlayer[] mySquad = new ProPlayer[3];
+    private String teamName;
+    private List<ProPlayer> roster;
 
-        // 2. "Spawn" friends into the array
-        mySquad[0] = new ProPlayer("Jethro", 88, 82, 80, 75);
-        mySquad[1] = new ProPlayer("StrikerFriend", 92, 90, 70, 80);
-        mySquad[2] = new ProPlayer("MidfieldGamer", 75, 70, 88, 85);
+    public Team(String teamName) {
+        this.teamName = teamName;
+        this.roster = new ArrayList<>();
+    }
 
-        // 3. Loop through the squad and print their PlayStyles
-        System.out.println("--- PRO CLUBS SQUAD ANALYSIS ---");
-        for (int i = 0; i < mySquad.length; i++) {
-            System.out.println(mySquad[i].getPlayStyleTag() + " in the squad.");
+    public void signPlayer(ProPlayer player) {
+        this.roster.add(player);
+        System.out.println(player.getName() + " [Signed to " + teamName + "]");
+    }
+
+    public void showSquadQuality() {
+        int total = 0;
+        System.out.println("\n--- " + teamName + " SQUAD REPORT ---");
+        for (ProPlayer player : roster) {
+            System.out.println("- " + player.getName() + " (" + player.getPlayStyleTag() + ")");
+            total += player.calculateOverallRating();
         }
+        System.out.println("Average squad rating: " + (total / roster.size()));
     }
 }
